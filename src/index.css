@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+  
+  /* Instagram Stories specific colors */
+  --instagram-gradient: linear-gradient(45deg, hsl(25, 95%, 53%) 0%, hsl(20, 90%, 48%) 25%, hsl(348, 91%, 40%) 50%, hsl(316, 73%, 52%) 75%, hsl(262, 83%, 58%) 100%);
+  --story-viewed: hsl(0, 0%, 78%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .story-gradient {
+    background: var(--instagram-gradient);
+  }
+  
+  .story-viewed {
+    background: var(--story-viewed);
+  }
+  
+  .story-thumbnail {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .story-thumbnail:active {
+    transform: scale(0.95);
+  }
+
+  .progress-bar {
+    background: rgba(255, 255, 255, 0.3);
+    height: 4px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    background: white;
+    height: 100%;
+    width: 0%;
+    border-radius: 2px;
+    transition: width 0.1s linear;
+  }
+
+  .progress-fill.active {
+    animation: progress 5s linear forwards;
+  }
+
+  .loading-blur {
+    filter: blur(5px);
+    transition: filter 0.3s ease-out;
+  }
+
+  .loaded {
+    filter: blur(0);
+  }
+
+  .story-list::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .story-list {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@layer utilities {
+  @keyframes progress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+  
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @keyframes slideIn {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(0); }
+  }
+  
+  @keyframes pulseStory {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+  }
+
+  .animate-progress {
+    animation: progress 5s linear forwards;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .animate-slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  .animate-pulse-story {
+    animation: pulseStory 0.2s ease-in-out;
+  }
+}
